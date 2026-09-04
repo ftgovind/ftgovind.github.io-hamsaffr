@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hamsaffr App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ഹെഡറും സെർച്ചും -->
+        <header class="top-nav 3d-effect">
+            <h2>Hamsaffr</h2>
+            <div class="search-bar">
+                <input type="text" id="search-id" placeholder="🔍 Search User ID...">
+            </div>
+        </header>
+
+        <!-- സ്റ്റോറി സെക്ഷൻ (Instagram Style) -->
+        <div class="stories-container">
+            <div class="story 3d-effect add-story">
+                <span>+</span>
+                <p>Your Story</p>
+            </div>
+            <div class="story 3d-effect">
+                <img src="https://via.placeholder.com/60" alt="User">
+                <p>User_001</p>
+            </div>
+            <div class="story 3d-effect">
+                <img src="https://via.placeholder.com/60" alt="User">
+                <p>User_002</p>
+            </div>
+        </div>
+
+        <!-- ഫീഡും ചാറ്റും മാറ്റാനുള്ള ടാബുകൾ -->
+        <div class="tabs">
+            <button class="tab-btn active 3d-effect" onclick="switchTab('feed')">📷 Feed</button>
+            <button class="tab-btn 3d-effect" onclick="switchTab('chat')">💬 Chat</button>
+        </div>
+
+        <!-- ഇൻസ്റ്റാഗ്രാം ഫീഡ് -->
+        <main id="feed-section" class="content-section active">
+            <div class="post 3d-effect">
+                <div class="post-header">
+                    <strong>@User_001</strong>
+                </div>
+                <div class="post-image">
+                    <p style="text-align:center; padding:40px; color:#aaa;">Image Space</p>
+                </div>
+                <div class="post-actions">
+                    <span>❤️ Like</span> <span>💬 Comment</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- വാട്സ്ആപ്പ് ചാറ്റ് -->
+        <main id="chat-section" class="content-section">
+            <div class="chat-box" id="chat-box">
+                <div class="message received 3d-effect">Welcome to Hamsaffr UI!</div>
+            </div>
+            <footer class="chat-input-area 3d-effect">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <label for="image-upload" class="upload-btn">📷</label>
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-btn" class="3d-effect">Send</button>
+            </footer>
+        </main>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
