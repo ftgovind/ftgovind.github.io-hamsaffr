@@ -1,0 +1,63 @@
+// ടാബുകൾ മാറ്റാനുള്ള ഫംഗ്ഷൻ (Feed <-> Chat)
+function switchTab(tabName) {
+    // എല്ലാ ടാബുകളും സെക്ഷനുകളും ഹൈഡ് ചെയ്യുന്നു
+    document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+    // സെലക്ട് ചെയ്ത ടാബ് മാത്രം കാണിക്കുന്നു
+    document.getElementById(tabName + '-section').classList.add('active');
+    event.currentTarget.classList.add('active');
+}
+
+// ചാറ്റ് ചെയ്യാനുള്ള കോഡ്
+const chatBox = document.getElementById('chat-box');
+const messageInput = document.getElementById('message-input');
+const sendBtn = document.getElementById('send-btn');
+const imageUpload = document.getElementById('image-upload');
+
+function addMessage(text, isSent = true, imageUrl = null) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', '3d-effect'); // 3D എഫക്റ്റ് മെസ്സേജിനും നൽകുന്നു
+    messageDiv.classList.add(isSent ? 'sent' : 'received');
+
+    if (text) {
+        const textPara = document.createElement('p');
+        textPara.textContent = text;
+        messageDiv.appendChild(textPara);
+    }
+
+    if (imageUrl) {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        messageDiv.appendChild(img);
+    }
+
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+sendBtn.addEventListener('click', () => {
+    const text = messageInput.value.trim();
+    if (text !== '') {
+        addMessage(text, true); 
+        messageInput.value = ''; 
+    }
+});
+
+imageUpload.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            addMessage("", true, e.target.result); 
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// Search ID Simulation
+document.getElementById('search-id').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        alert("Searching for ID: " + this.value + "\n(Backend database is required to show real user profiles)");
+    }
+});
